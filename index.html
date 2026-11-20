@@ -3,14 +3,10 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>eLaporJP — Dashboard Rekod Aktiviti Jabatan</title>
-
-  <!-- Bootstrap 5 CSS -->
+  <title>eLaporJP — Dashboard Rekod Aktiviti Jabatan Perdagangan</title>
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" />
-  <!-- Bootstrap Icons -->
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css" />
-  <!-- Gaya Tambahan eLaporJP -->
-  <link rel="stylesheet" href="css/style.css" />
+  <link rel="stylesheet" href="style.css" />
 </head>
 <body>
 
@@ -21,42 +17,26 @@
   <button class="mobile-toggle" id="mobile-toggle" aria-label="Buka Menu">
     <i class="bi bi-list"></i>
   </button>
-
   <a href="#" class="brand">
     <span class="brand-icon"><i class="bi bi-clipboard2-data-fill"></i></span>
     eLaporJP
   </a>
-
-  <div class="header-right">
-    <span class="jabatan-icon"><i class="bi bi-building"></i></span>
-    <span class="jabatan-badge" id="header-jabatan">Jabatan Anda</span>
+  <div class="header-right d-none d-md-flex">
+    <span><i class="bi bi-building me-1"></i></span>
+    <span class="jabatan-badge">Jabatan Perdagangan</span>
   </div>
 </header>
 
 <!-- ============================================================
      SIDEBAR
      ============================================================ -->
-<nav class="app-sidebar">
+<nav class="app-sidebar" id="app-sidebar">
   <span class="nav-section-label">Menu Utama</span>
-
   <a href="#dashboard" class="nav-link active" onclick="setActiveNav(this)">
-    <i class="bi bi-speedometer2"></i>
-    Dashboard
+    <i class="bi bi-speedometer2"></i> Dashboard
   </a>
-  <a href="#laporan-aktiviti" class="nav-link" onclick="setActiveNav(this)">
-    <i class="bi bi-journal-text"></i>
-    Laporan Aktiviti
-  </a>
-  <a href="#kertas-kerja" class="nav-link" onclick="setActiveNav(this)">
-    <i class="bi bi-file-earmark-text"></i>
-    Kertas Kerja
-  </a>
-
-  <span class="nav-section-label" style="margin-top:1rem;">Tetapan</span>
-
-  <a href="#" class="nav-link" onclick="showConfigInfo(); return false;">
-    <i class="bi bi-gear"></i>
-    Konfigurasi
+  <a href="#rekod-aktiviti" class="nav-link" onclick="setActiveNav(this)">
+    <i class="bi bi-table"></i> Rekod Aktiviti
   </a>
 </nav>
 
@@ -65,157 +45,81 @@
      ============================================================ -->
 <main class="app-main">
 
-  <!-- Demo Alert -->
-  <div class="demo-alert" id="demo-alert" style="display:none;">
-    <i class="bi bi-info-circle-fill" style="color:#f59e0b;font-size:1rem;"></i>
-    <span>
-      <strong>Mod Demo:</strong> Memaparkan data contoh. Sila kemaskini
-      <code>SHEET_ID</code> dalam fail <code>js/config.js</code> untuk sambung ke Google Sheets anda.
-    </span>
-  </div>
-
   <!-- ==========================
-       BAHAGIAN DASHBOARD
+       DASHBOARD
        ========================== -->
   <section id="dashboard">
     <h1 class="page-title">Dashboard eLaporJP</h1>
-    <p class="page-subtitle">Rekod aktiviti dan kertas kerja jabatan yang telah dilaksanakan</p>
+    <p class="page-subtitle">Rekod aktiviti dan kertas kerja Jabatan Perdagangan yang telah dilaksanakan</p>
 
     <!-- Kad Ringkasan -->
     <div class="row g-3 mb-4">
-
-      <div class="col-12 col-sm-6 col-lg-4">
+      <div class="col-12 col-sm-6 col-xl-4">
         <div class="summary-card">
-          <div class="card-icon icon-blue">
-            <i class="bi bi-calendar2-check"></i>
-          </div>
+          <div class="card-icon icon-blue"><i class="bi bi-calendar2-check"></i></div>
           <div class="card-info">
             <div class="card-value" id="count-program">—</div>
             <div class="card-label">Jumlah Program / Aktiviti</div>
           </div>
         </div>
       </div>
-
-      <div class="col-12 col-sm-6 col-lg-4">
+      <div class="col-12 col-sm-6 col-xl-4">
         <div class="summary-card">
-          <div class="card-icon icon-teal">
-            <i class="bi bi-people-fill"></i>
-          </div>
+          <div class="card-icon icon-teal"><i class="bi bi-people-fill"></i></div>
           <div class="card-info">
             <div class="card-value" id="count-peserta">—</div>
             <div class="card-label">Jumlah Peserta Keseluruhan</div>
           </div>
         </div>
       </div>
-
-      <div class="col-12 col-sm-6 col-lg-4">
+      <div class="col-12 col-sm-6 col-xl-4">
         <div class="summary-card">
-          <div class="card-icon icon-indigo">
-            <i class="bi bi-tags-fill"></i>
-          </div>
+          <div class="card-icon icon-indigo"><i class="bi bi-tags-fill"></i></div>
           <div class="card-info">
             <div class="card-value" id="count-kategori">—</div>
             <div class="card-label">Jumlah Kategori Program</div>
           </div>
         </div>
       </div>
-
-    </div><!-- /Kad Ringkasan -->
+    </div>
   </section>
 
   <!-- ==========================
-       JADUAL LAPORAN AKTIVITI
+       JADUAL REKOD AKTIVITI
        ========================== -->
-  <section id="laporan-aktiviti" class="table-section">
+  <section id="rekod-aktiviti" class="table-section">
     <div class="table-section-header">
       <div class="table-section-title">
-        <span class="title-icon laporan-icon"><i class="bi bi-journal-text"></i></span>
-        Laporan Aktiviti / Program
+        <span class="title-icon laporan-icon"><i class="bi bi-table"></i></span>
+        Senarai Rekod Aktiviti / Program
       </div>
       <div class="table-controls">
         <div class="search-wrapper">
           <i class="bi bi-search search-icon"></i>
-          <input
-            type="text"
-            id="search-laporan"
-            class="form-control search-box"
-            placeholder="Cari program..."
-            oninput="onLaporanSearchChange()"
-          />
+          <input type="text" id="search-rekod" class="form-control search-box" placeholder="Cari program atau PIC..." oninput="filterRekod()" />
         </div>
-        <select id="filter-kategori-laporan" class="form-select" style="width:160px;" onchange="onLaporanSearchChange()">
+        <select id="filter-kategori-rekod" class="form-select filter-select" onchange="filterRekod()">
           <option value="">Semua Kategori</option>
         </select>
       </div>
     </div>
-
     <div class="table-wrapper">
       <table class="data-table">
         <thead>
           <tr>
             <th class="no-col">No.</th>
             <th>Nama Program / Aktiviti</th>
+            <th>Nama PIC / Pengarah Program</th>
             <th>Tarikh Program</th>
             <th>Kategori</th>
             <th>PDF Laporan</th>
-          </tr>
-        </thead>
-        <tbody id="tbody-laporan">
-          <tr>
-            <td colspan="5" class="loading-state">
-              <span class="spinner-border spinner-border-sm me-2" role="status"></span>
-              Memuatkan data...
-            </td>
-          </tr>
-        </tbody>
-      </table>
-    </div>
-  </section>
-
-  <!-- ==========================
-       JADUAL KERTAS KERJA
-       ========================== -->
-  <section id="kertas-kerja" class="table-section">
-    <div class="table-section-header">
-      <div class="table-section-title">
-        <span class="title-icon kertas-icon"><i class="bi bi-file-earmark-text"></i></span>
-        Kertas Kerja Aktiviti / Program
-      </div>
-      <div class="table-controls">
-        <div class="search-wrapper">
-          <i class="bi bi-search search-icon"></i>
-          <input
-            type="text"
-            id="search-kertas"
-            class="form-control search-box"
-            placeholder="Cari program..."
-            oninput="onKertasSearchChange()"
-          />
-        </div>
-        <select id="filter-kategori-kertas" class="form-select" style="width:160px;" onchange="onKertasSearchChange()">
-          <option value="">Semua Kategori</option>
-        </select>
-      </div>
-    </div>
-
-    <div class="table-wrapper">
-      <table class="data-table">
-        <thead>
-          <tr>
-            <th class="no-col">No.</th>
-            <th>Nama Program / Aktiviti</th>
-            <th>Tarikh Program</th>
-            <th>Kategori</th>
             <th>PDF Kertas Kerja</th>
           </tr>
         </thead>
-        <tbody id="tbody-kertas">
-          <tr>
-            <td colspan="5" class="loading-state">
-              <span class="spinner-border spinner-border-sm me-2" role="status"></span>
-              Memuatkan data...
-            </td>
-          </tr>
+        <tbody id="tbody-rekod">
+          <tr><td colspan="7" class="loading-state">
+            <span class="spinner-border spinner-border-sm me-2"></span>Memuatkan data...
+          </td></tr>
         </tbody>
       </table>
     </div>
@@ -227,48 +131,23 @@
      FOOTER
      ============================================================ -->
 <footer class="app-footer">
-  <div class="footer-refresh-info">
-    <i class="bi bi-clock"></i>
-    Data terakhir dikemaskini: <strong id="last-updated">—</strong>
+  <div class="footer-info">
+    <i class="bi bi-file-earmark-spreadsheet me-1"></i>
+    Sumber: <strong>KERTAS KERJA DAN LAPORAN AKTIVITI JP 2026</strong>
   </div>
-  <button class="btn-refresh" onclick="reloadData()">
-    <i class="bi bi-arrow-clockwise"></i> Muat Semula
-  </button>
+  <div class="footer-right">
+    <span class="text-muted-sm">
+      <i class="bi bi-clock me-1"></i>Dikemaskini: <span id="last-updated">—</span>
+    </span>
+  </div>
 </footer>
 
-<!-- Bootstrap JS -->
+<!-- ============================================================
+     SCRIPTS
+     ============================================================ -->
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
-
-<!-- Skrip eLaporJP (urutan penting) -->
-<script src="js/config.js"></script>
-<script src="js/sampleData.js"></script>
-<script src="js/app.js"></script>
-
-<script>
-  // Kemaskini nama jabatan dari config
-  document.getElementById('header-jabatan').textContent = CONFIG.NAMA_JABATAN || 'eLaporJP';
-
-  // Fungsi navigasi sidebar
-  function setActiveNav(el) {
-    document.querySelectorAll('.app-sidebar .nav-link').forEach(n => n.classList.remove('active'));
-    el.classList.add('active');
-  }
-
-  // Maklumat konfigurasi
-  function showConfigInfo() {
-    alert(
-      'Cara Konfigurasi Google Sheets:\n\n' +
-      '1. Buka fail js/config.js\n' +
-      '2. Gantikan MASUKKAN_SHEET_ID_ANDA_DI_SINI\n' +
-      '   dengan ID Google Sheets anda.\n\n' +
-      'Contoh URL Sheets:\n' +
-      'https://docs.google.com/spreadsheets/d/[SHEET_ID]/edit\n\n' +
-      '3. Pastikan Sheets dikongsi sebagai\n' +
-      '   "Anyone with the link can view"\n\n' +
-      '4. Muat semula halaman ini.'
-    );
-  }
-</script>
+<script src="js/data.js"></script>
+<script src="app.js"></script>
 
 </body>
 </html>
